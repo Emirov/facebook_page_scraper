@@ -7,8 +7,8 @@ try:
     # import webdriver for downloading respective driver for the browser
     from webdriver_manager.chrome import ChromeDriverManager
     from webdriver_manager.firefox import GeckoDriverManager
-except Exception as ex:
-    print(ex)
+    from webdriver_manager.utils import ChromeType
+
 
 
 class Initializer:
@@ -40,6 +40,7 @@ class Initializer:
         """expects browser name and returns a driver instance"""
         # if browser is suppose to be chrome
         if browser_name.lower() == "chrome":
+            webdriver.Chrome(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()
             browser_option = ChromeOptions()
             # automatically installs chromedriver and initialize it and returns the instance
             if self.proxy is not None:
